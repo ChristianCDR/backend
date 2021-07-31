@@ -4,6 +4,7 @@ const helmet= require('helmet');
 const mongoose = require('mongoose');
 const routeSauce = require('./routes/sauce');
 const routeUser= require('./routes/user');
+const path= require ('path');
 
 const connect= 'mongodb+srv://firstUser:A27r6h62vK7aZxT@cluster0.wzxgi.mongodb.net/sopekockodatabase?retryWrites=true&w=majority';
 mongoose.connect(connect, {useNewUrlParser: true, useUnifiedTopology: true})
@@ -24,7 +25,7 @@ app.use(helmet());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-
+app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/sauces', routeSauce);
 app.use('/api/auth',routeUser);
 

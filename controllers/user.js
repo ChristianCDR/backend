@@ -32,7 +32,7 @@ exports.login=(req,res, next)=>{
         userId: user._id,
         token: jwt.sign(
           {userId: user._id},
-          'hoc loco quaedam quaestio subdifficilis, num quando amici novi, digni amicitia, veteribus sint anteponendi, ut equis vetulis teneros anteponere solemus. Indigna homine dubitatio! Non enim debent esse amicitiarum sicut aliarum rerum satietates; veterrima quaeque, ut ea vina, quae',
+          'hoc_loco_quaedam_quaestio_subdifficilis_num_quando_amici_novi_digni_amicitia_veteribus_sint_anteponendi_ut_equis_vetulis_teneros_anteponere_solemus_Indigna_homine_dubitatio!_Non_enim_debent_esse_amicitiarum_sicut_aliarum_rerum_satietates_veterrima_quaeque_ut_ea_vina_quae',
           {expiresIn:'24h'}
           )
       });

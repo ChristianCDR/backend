@@ -1,8 +1,10 @@
 const sauce= require ('../models/sauce');
 
   exports.createNewSauce=(req,res, next)=>{
+    const sauceObject= JSON.parse(req.body.sauce);
     const newSauce= new sauce({
-      ...req.body
+      ...sauceObject,
+      imageUrl:`${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     });
     newSauce.save()
     .then(()=>{res.status(201).json({message:'Sauce enregistrée!'})})
