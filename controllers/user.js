@@ -3,7 +3,7 @@ const bcrypt= require('bcrypt');
 const jwt= require('jsonwebtoken');
 
 exports.signup=(req,res, next)=>{
-  bcrypt.hash(req.body.password, 7)
+  bcrypt.hash(req.body.password, 5)
   .then(hash=>{
     const newUser= new user({
       email: req.body.email,
@@ -14,7 +14,8 @@ exports.signup=(req,res, next)=>{
     .catch(error=> {res.status(501).json({error})});
   })
   .catch(error=> {res.status(500).json({error})});
-  res.status(200).json({message:'ok'});
+    res.status(200).json({message:'ok'});
+    next();
 };
 
 exports.login=(req,res, next)=>{
@@ -39,5 +40,5 @@ exports.login=(req,res, next)=>{
     })
     .catch(error=>{res.status(500).json({error})});
   })
-  .catch(error=>{res.status(500).json({error})});
+  .catch(error=>{res.status(500).json({error})}); 
 };
