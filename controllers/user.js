@@ -1,21 +1,20 @@
 const user= require('../models/user');
 const bcrypt= require('bcrypt');
 const jwt= require('jsonwebtoken');
+require('dotenv').config();
 
 exports.signup=(req,res, next)=>{
-  bcrypt.hash(req.body.password, 5)
+  bcrypt.hash(req.body.password, 10)
   .then(hash=>{
     const newUser= new user({
       email: req.body.email,
       password: hash
     });
     newUser.save()
-    .then(res.status(201).json({message:'Nouvel utilisateur crée!'}))
+    .then(res.status(201).json({message:'Nouvel utilisateur crée!'})) 
     .catch(error=> {res.status(501).json({error})});
   })
   .catch(error=> {res.status(500).json({error})});
-    res.status(200).json({message:'ok'});
-    next();
 };
 
 exports.login=(req,res, next)=>{
@@ -33,7 +32,7 @@ exports.login=(req,res, next)=>{
         userId: user._id,
         token: jwt.sign(
           {userId: user._id},
-          'hoc_loco_quaedam_quaestio_subdifficilis_num_quando_amici_novi_digni_amicitia_veteribus_sint_anteponendi_ut_equis_vetulis_teneros_anteponere_solemus_Indigna_homine_dubitatio!_Non_enim_debent_esse_amicitiarum_sicut_aliarum_rerum_satietates_veterrima_quaeque_ut_ea_vina_quae',
+          process.env.TOKEN_SECRET_KEY,
           {expiresIn:'24h'}
           )
       });

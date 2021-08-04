@@ -81,7 +81,7 @@ const fs= require('fs');
               sauce.updateOne(
                 { _id: sauceId }, 
                 { $pull: { usersDisliked: userId }, 
-                  $inc: { dislikes: -1 }
+                  $inc: { dislikes: -1 } 
                 }
               )
                 .then(() => res.status(200).json({ message: 'disliked canceled' }))

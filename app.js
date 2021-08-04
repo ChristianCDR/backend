@@ -6,7 +6,7 @@ const routeSauce = require('./routes/sauce');
 const routeUser= require('./routes/user');
 const path= require ('path');
 
-const connect= 'mongodb+srv://firstUser:A27r6h62vK7aZxT@cluster0.wzxgi.mongodb.net/sopekockodatabase?retryWrites=true&w=majority';
+const connect= process.env.CONNEXION; 
 mongoose.connect(connect, {useNewUrlParser: true, useUnifiedTopology: true})
 .then(()=>console.log('Connexion à MongoDB réussie!'))
 .catch(()=>console.log('Connexion à MongoDB échouée!'));

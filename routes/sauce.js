@@ -14,6 +14,6 @@ route.get('/:id',auth, ctrlSauce.getOneSauce);
 
 route.put('/:id',auth,multer, ctrlSauce.modifySauce);
 
-route.delete('/:id',auth, ctrlSauce.deleteSauce);
+route.delete('/:id',auth, ctrlSauce.deleteSauce); 
 
 module.exports= route;
