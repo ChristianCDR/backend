@@ -7,4 +7,4 @@ const ctrlEmail= require('../middleware/emailValidator');
 route.post('/signup',ctrlEmail.emailValidator, ctrlPass.passwordValidator, ctrlUser.signup);
 route.post('/login', ctrlUser.login); 
 
-module.exports= route;
+module.exports= route;  
