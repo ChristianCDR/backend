@@ -1,6 +1,7 @@
 const sauce= require ('../models/sauce');
 const fs= require('fs');
 
+//Créer une nouvelle sauce (Route Post)
   exports.createNewSauce=(req,res, next)=>{
     const sauceObject= JSON.parse(req.body.sauce);
     const newSauce= new sauce({
@@ -11,19 +12,19 @@ const fs= require('fs');
     .then(()=>{res.status(201).json({message:'Sauce enregistrée!'})})
     .catch((error)=>{res.status(400).json({error})});
   };
-
+//Récuperer toutes les sauces de la base de données (Route Get)
   exports.getAllSauces=(req,res,next)=>{
     sauce.find()
     .then(sauces =>{res.status(200).json(sauces)})
     .catch(error=>{res.status(400).json({error})});
   };
-
+//Récupérer une sauce en particulier (Route Get)
   exports.getOneSauce=(req, res, next) => {
     sauce.findOne({ _id: req.params.id })
     .then(thesauce => res.status(200).json(thesauce))
     .catch(error => res.status(404).json({error}));
   };
-
+//Modifier une sauce déjà postée (Route Put)
   exports.modifySauce=(req, res, next) => {
     const sauceObject= req.file ? {
       ...JSON.parse(req.body.sauce),
@@ -34,7 +35,7 @@ const fs= require('fs');
     .then(() => res.status(200).json({ message: 'Sauce modifiée !'}))
     .catch(error => res.status(400).json({ error }));
   };
-
+//Supprimer une sauce  (Route Delete)
   exports.deleteSauce=(req, res, next) => {
     sauce.findOne({_id: req.params.id})
     .then((sauce) =>{
@@ -47,7 +48,7 @@ const fs= require('fs');
     })
     .catch(error => res.status(500).json({ error }));  
   };
-
+// Routes pour Like/Dislike 
   exports.likeSauce=(req,res,next)=>{
     
     switch(req.body.like){
