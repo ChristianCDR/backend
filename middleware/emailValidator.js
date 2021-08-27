@@ -9,7 +9,7 @@ exports.emailValidator = (req, res, next) => {
 -1 point
  */
     let emailRegExp = new RegExp('^[a-z0-9.-_]+[@]{1}[a-z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g');
-    let emailTest = emailRegExp.test(email);
+    let emailTest = emailRegExp.test(email); 
 
     if(!emailTest){
       res.status(400).json({ message: 'Adresse mail invalide !' });
